@@ -177,11 +177,18 @@ button:focus{
 }
 
 .errors{
-    color: #d61313 !important;
+    color: #f31515 !important;
     font-weight: 400;
     font-size: 16px;
     margin-top: 10px !important;
+    text-align: center;
 }
+
+input:-webkit-autofill{
+    -webkit-box-shadow: 0 0 0 10000px #2e2e2e inset !important;
+    -webkit-text-fill-color: white !important;
+}
+
 
 @media only screen and (max-width: 800px){
     .image-container{

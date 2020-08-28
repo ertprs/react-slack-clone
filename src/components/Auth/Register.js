@@ -2,15 +2,15 @@ import React from "react";
 import "./register.css";
 import firebase from "../../firebase";
 import md5 from "md5";
-import {
-  Grid,
-  Form,
-  Segment,
-  Button,
-  Header,
-  Message,
-  Icon,
-} from "semantic-ui-react";
+// import {
+//   Grid,
+//   Form,
+//   Segment,
+//   Button,
+//   Header,
+//   Message,
+//   Icon,
+// } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 class Register extends React.Component {
@@ -37,12 +37,11 @@ class Register extends React.Component {
       error = { message: "Password is invalid! Must be at least 6 Characters" };
       this.setState({ errors: errors.concat(error) });
       return false;
-    } else if (!this.isPasswordMatch(this.state)){
+    } else if (!this.isPasswordMatch(this.state)) {
       error = { message: "Password does not match!" };
       this.setState({ errors: errors.concat(error) });
       return false;
-    }
-    else {
+    } else {
       return true;
     }
   };
@@ -58,23 +57,23 @@ class Register extends React.Component {
 
   isPasswordValid = ({ password, passwordConfirmation }) => {
     if (password.length < 6 || passwordConfirmation.length < 6) {
-     return false;
+      return false;
     } else {
       return true;
     }
   };
 
-  isPasswordMatch =({password, passwordConfirmation}) => {
+  isPasswordMatch = ({ password, passwordConfirmation }) => {
     if (password !== passwordConfirmation) {
       return false;
     }
-  }
+  };
 
   displayErrors = (errors) =>
     errors.map((error, i) => (
-      <p className="errors" key={i}>
+      <h4 className="errors" key={i}>
         {error.message}
-      </p>
+      </h4>
     ));
 
   handleChange = (event) => {
@@ -149,7 +148,7 @@ class Register extends React.Component {
     return (
       <div class="register-container">
         <div class="image-container">
-          <img src={require("./auth-assets/placeholder.png")} />
+          <img src={require("./auth-assets/placeholder.png")} alt=""/>
         </div>
         <div class="form-container">
           <div class="form-holder">
@@ -196,20 +195,18 @@ class Register extends React.Component {
                 onChange={this.handleChange}
                 value={passwordConfirmation}
               />
+              {errors.length > 0 && <div>{this.displayErrors(errors)}</div>}
 
               <button disabled={loading} class="submit-btn">
                 Register
               </button>
             </form>
 
-            {errors.length > 0 && (
-              <div>
-                {this.displayErrors(errors)}
-              </div>
-            )}
-
             <h5>
-              Already have an account? <Link to="/login"><b> Sign in</b></Link>
+              Already have an account? &nbsp;{" "}
+              <Link to="/login">
+                <b> Sign in</b>
+              </Link>
             </h5>
           </div>
         </div>
