@@ -36,12 +36,13 @@ class Register extends React.Component {
     } else if (!this.isPasswordValid(this.state)) {
       error = { message: "Password is invalid! Must be at least 6 Characters" };
       this.setState({ errors: errors.concat(error) });
-      return false;
-    } else if (!this.isPasswordMatch(this.state)) {
-      error = { message: "Password does not match!" };
-      this.setState({ errors: errors.concat(error) });
-      return false;
-    } else {
+      return false;}
+    // } else if (!this.isPasswordMatch(this.state)) {
+    //   error = { message: "Password does not match!" };
+    //   this.setState({ errors: errors.concat(error) });
+    //   return false;
+    // } 
+    else {
       return true;
     }
   };
@@ -93,9 +94,7 @@ class Register extends React.Component {
           createdUser.user
             .updateProfile({
               displayName: this.state.username,
-              photoURL: `http://gravatar.com/${md5(
-                createdUser.user.email
-              )}?d=identicon`,
+              photoURL: `${require('../../assets/new_profile.png')}`,
             })
             .then(() => {
               this.saveUser(createdUser).then(() => {
